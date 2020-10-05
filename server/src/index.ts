@@ -1,3 +1,5 @@
+import dotenv from 'dotenv'
+dotenv.config()
 import express, { Express, Response } from 'express'
 
 const app: Express = express()
