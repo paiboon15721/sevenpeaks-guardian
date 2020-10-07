@@ -1,0 +1,21 @@
+{
+  "response": {
+    "status": "ok",
+    "userTier": "developer",
+    "total": 1,
+    "content": {
+      "id": "sport/live/2020/oct/06/nba-finals-game-4-los-angeles-lakers-v-miami-heat-live",
+      "type": "liveblog",
+      "sectionId": "sport",
+      "sectionName": "Sport",
+      "webPublicationDate": "2020-10-07T04:03:56Z",
+      "webTitle": "NBA finals Game 4: Los Angeles Lakers 102-96 Miami Heat – as it happened",
+      "webUrl": "https://www.theguardian.com/sport/live/2020/oct/06/nba-finals-game-4-los-angeles-lakers-v-miami-heat-live",
+      "apiUrl": "https://content.guardianapis.com/sport/live/2020/oct/06/nba-finals-game-4-los-angeles-lakers-v-miami-heat-live",
+      "isHosted": false,
+      "pillarId": "pillar/sport",
+      "pillarName": "Sport"
+    }
+  },
+  "statusCode": 200
+}
