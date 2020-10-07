@@ -1,6 +1,8 @@
 import axios, { AxiosInstance } from 'axios'
 
-export default (baseURL: string): AxiosInstance => {
-  const instance = axios.create({ baseURL })
+const createGuardianClient = (baseURL: string): AxiosInstance => {
+  const instance = axios.create({ baseURL, validateStatus: () => true })
   return instance
 }
+
+export default createGuardianClient
