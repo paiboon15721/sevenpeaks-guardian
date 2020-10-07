@@ -1,5 +1,25 @@
+import { NextPage } from 'next'
 import React from 'react'
+import { Articles, GuardianResponse } from '../repositories/createGuardianApis'
+import Error from '../components/error'
+import Home from '../components/home'
+import { guardianApis } from '../appContext'
 
-const Index = () => <h1>Hello world</h1>
+interface Props {
+  articlesResponse: GuardianResponse<Articles>
+}
 
-export default Index
+const Page: NextPage<Props> = props => {
+  const { articlesResponse } = props
+  if (articlesResponse.error) {
+    return <Error message={articlesResponse.error.message} />
+  }
+  return <Home articlesResponse={articlesResponse} />
+}
+
+Page.getInitialProps = async () => {
+  const articlesResponse = await guardianApis.getArticles()
+  return { articlesResponse }
+}
+
+export default Page
