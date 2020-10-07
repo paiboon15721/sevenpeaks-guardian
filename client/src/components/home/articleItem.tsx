@@ -1,0 +1,36 @@
+import React from 'react'
+import { Box, Badge } from '@chakra-ui/core'
+import { Article } from '../../repositories/createGuardianApis'
+
+interface Props {
+  article: Article
+}
+
+const Comp: React.FC<Props> = ({ article }) => (
+  <Box maxW="4xl" borderWidth="1px" borderRadius="lg" overflow="hidden">
+    <Box p="6">
+      <Box d="flex" alignItems="baseline">
+        <Badge borderRadius="full" px="2" colorScheme="teal">
+          {article.pillarName}
+        </Badge>
+        <Box
+          color="gray.500"
+          fontWeight="semibold"
+          letterSpacing="wide"
+          fontSize="xs"
+          textTransform="uppercase"
+          ml="2"
+        >
+          {article.sectionName} &bull; {article.type}
+        </Box>
+      </Box>
+
+      <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
+        {article.webTitle}
+      </Box>
+      <Box>{article.webPublicationDate}</Box>
+    </Box>
+  </Box>
+)
+
+export default Comp
