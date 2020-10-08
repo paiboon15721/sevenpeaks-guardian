@@ -23,6 +23,12 @@ export interface Article {
   isHosted: boolean
   pillarId: string
   pillarName: string
+  fields: {
+    starRating?: string
+    thumbnail?: string
+    headline: string
+    bodyText?: string
+  }
 }
 
 export interface ArticlesRoot {
@@ -45,16 +51,23 @@ export interface ArticleRoot {
 }
 
 export interface GuardianApis {
-  getArticles: (q?: string) => Promise<GuardianResponse<ArticlesRoot>>
+  getArticles: (
+    orderBy: 'oldest' | 'newest',
+    q?: string,
+  ) => Promise<GuardianResponse<ArticlesRoot>>
   getArticleById: (id: string) => Promise<GuardianResponse<ArticleRoot>>
 }
 
 export default (guardianClient: AxiosInstance): GuardianApis => ({
-  async getArticles(q): Promise<GuardianResponse<ArticlesRoot>> {
+  async getArticles(orderBy, q): Promise<GuardianResponse<ArticlesRoot>> {
     const { data } = await guardianClient.get<GuardianResponse<ArticlesRoot>>(
       '/search',
       {
-        params: { q },
+        params: {
+          q,
+          'order-by': orderBy,
+          'show-fields': 'thumbnail,starRating,headline',
+        },
       },
     )
     return data
@@ -63,6 +76,11 @@ export default (guardianClient: AxiosInstance): GuardianApis => ({
   async getArticleById(id): Promise<GuardianResponse<ArticleRoot>> {
     const { data } = await guardianClient.get<GuardianResponse<ArticleRoot>>(
       `/${id}`,
+      {
+        params: {
+          'show-fields': 'starRating,thumbnail,headline,bodyText',
+        },
+      },
     )
     return data
   },
