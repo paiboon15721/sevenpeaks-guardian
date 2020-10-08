@@ -45,7 +45,7 @@ const Header = () => {
     <chakra.header
       pos="fixed"
       top="0"
-      zIndex="1"
+      zIndex="100"
       bg={bg}
       left="0"
       right="0"
