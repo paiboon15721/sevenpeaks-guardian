@@ -1,5 +1,7 @@
 import React from 'react'
-import { Box, Badge } from '@chakra-ui/core'
+import { Box, Badge, chakra, Button } from '@chakra-ui/core'
+import { ExternalLinkIcon, ArrowBackIcon } from '@chakra-ui/icons'
+import NextLink from 'next/link'
 import { Article } from '../../repositories/createGuardianApis'
 
 interface Props {
@@ -7,7 +9,12 @@ interface Props {
 }
 
 const Comp: React.FC<Props> = ({ article }) => (
-  <Box maxW="4xl" borderWidth="1px" borderRadius="lg" overflow="hidden">
+  <Box maxW="4xl" overflow="hidden">
+    <NextLink href="/">
+      <Button leftIcon={<ArrowBackIcon />} variant="link" my="3" size="lg">
+        Back
+      </Button>
+    </NextLink>
     <Box p="6">
       <Box d="flex" alignItems="baseline">
         <Badge borderRadius="full" px="2" colorScheme="teal">
@@ -25,8 +32,10 @@ const Comp: React.FC<Props> = ({ article }) => (
         </Box>
       </Box>
 
-      <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
-        {article.webTitle}
+      <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
+        <chakra.a href={article.webUrl} target="_blank">
+          {article.webTitle} <ExternalLinkIcon mx="2px" />
+        </chakra.a>
       </Box>
       <Box>{article.webPublicationDate}</Box>
     </Box>
