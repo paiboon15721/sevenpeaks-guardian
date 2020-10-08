@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Error: React.FC<Props> = props => (
-  <Alert status="error">
+  <Alert mt="5" status="error">
     <AlertIcon />
     <AlertTitle>{props.message}</AlertTitle>
   </Alert>
