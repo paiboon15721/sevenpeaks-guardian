@@ -27,7 +27,7 @@ export interface Article {
     starRating?: string
     thumbnail?: string
     headline: string
-    bodyText?: string
+    body?: string
   }
 }
 

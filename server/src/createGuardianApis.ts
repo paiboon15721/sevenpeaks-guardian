@@ -27,7 +27,7 @@ export interface Article {
     starRating?: string
     thumbnail?: string
     headline: string
-    bodyText?: string
+    body?: string
   }
 }
 
@@ -78,7 +78,7 @@ export default (guardianClient: AxiosInstance): GuardianApis => ({
       `/${id}`,
       {
         params: {
-          'show-fields': 'starRating,thumbnail,headline,bodyText',
+          'show-fields': 'starRating,thumbnail,headline,body',
         },
       },
     )
