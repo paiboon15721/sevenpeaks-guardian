@@ -1,12 +1,15 @@
 import { NextPage } from 'next'
 import React from 'react'
-import { Articles, GuardianResponse } from '../repositories/createGuardianApis'
+import {
+  ArticlesRoot,
+  GuardianResponse,
+} from '../repositories/createGuardianApis'
 import Error from '../components/error'
 import Home from '../components/home'
 import { guardianApis } from '../appContext'
 
 interface Props {
-  articlesResponse: GuardianResponse<Articles>
+  articlesResponse: GuardianResponse<ArticlesRoot>
 }
 
 const Page: NextPage<Props> = props => {

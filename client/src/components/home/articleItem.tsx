@@ -1,5 +1,6 @@
 import React from 'react'
 import { Box, Badge } from '@chakra-ui/core'
+import NextLink from 'next/link'
 import { Article } from '../../repositories/createGuardianApis'
 
 interface Props {
@@ -26,7 +27,7 @@ const Comp: React.FC<Props> = ({ article }) => (
       </Box>
 
       <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
-        {article.webTitle}
+        <NextLink href={`/articles/${article.id}`}>{article.webTitle}</NextLink>
       </Box>
       <Box>{article.webPublicationDate}</Box>
     </Box>

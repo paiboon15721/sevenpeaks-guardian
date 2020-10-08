@@ -1,17 +1,17 @@
 import { Stack } from '@chakra-ui/core'
 import React from 'react'
-import { Articles } from '../../repositories/createGuardianApis'
+import { Article } from '../../repositories/createGuardianApis'
 import ArticleItem from './articleItem'
 
 interface Props {
-  articles: Articles
+  articles: Article[]
 }
 
 const Comp: React.FC<Props> = props => {
   const { articles } = props
   return (
     <Stack direction={['column', 'row']} spacing="18px">
-      {articles.results.map(article => (
+      {articles.map(article => (
         <ArticleItem key={article.id} article={article} />
       ))}
     </Stack>
