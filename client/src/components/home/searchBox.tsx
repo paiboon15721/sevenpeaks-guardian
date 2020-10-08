@@ -17,7 +17,7 @@ interface Props extends InputGroupProps {
 const Comp: React.FC<Props> = props => {
   const {
     dispatch,
-    state: { orderBy },
+    state: { orderBy, q },
   } = useArticles()
 
   const toggleNewestFirst = () =>
@@ -33,7 +33,11 @@ const Comp: React.FC<Props> = props => {
         fontSize="1.2em"
         children={<SearchIcon />}
       />
-      <Input placeholder="Search articles" />
+      <Input
+        placeholder="Search articles"
+        onChange={e => dispatch({ type: 'SET_Q', payload: e.target.value })}
+        value={q}
+      />
       <InputRightElement width="8rem">
         <Button
           h="1.75rem"

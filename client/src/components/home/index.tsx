@@ -5,6 +5,7 @@ import appContext from '../../appContext'
 import { useArticles } from '../../stores/articles'
 import Error from '../error'
 import { Skeleton } from '@chakra-ui/core'
+import { useDebounce } from 'use-debounce'
 
 interface Props {}
 
@@ -16,6 +17,7 @@ const Comp: React.FC<Props> = () => {
   const isFirstRun = useRef(true)
   const { guardianApis } = useContext(appContext)
   const [loading, setLoading] = useState(false)
+  const [debounceQ] = useDebounce(q, 500)
 
   const fetchArticles = async () => {
     setLoading(true)
@@ -30,7 +32,7 @@ const Comp: React.FC<Props> = () => {
       return
     }
     fetchArticles()
-  }, [orderBy])
+  }, [orderBy, debounceQ])
 
   return (
     <>
