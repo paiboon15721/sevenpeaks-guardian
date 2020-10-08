@@ -16,13 +16,19 @@ export interface Article {
   type: string
   sectionId: string
   sectionName: string
-  webPublicationDate: Date
+  webPublicationDate: string
   webTitle: string
   webUrl: string
   apiUrl: string
   isHosted: boolean
   pillarId: string
   pillarName: string
+  fields: {
+    starRating?: string
+    thumbnail?: string
+    headline: string
+    bodyText?: string
+  }
 }
 
 export interface ArticlesRoot {
