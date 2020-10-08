@@ -4,14 +4,15 @@ import { GuardianApis } from './createGuardianApis'
 type GetArticlesQuery = {
   q: string
   orderBy: 'oldest' | 'newest'
+  page: string
 }
 
 export default (guardianApis: GuardianApis) => {
   const router = Router()
 
   router.get('/articles', async (req: Request, res: Response) => {
-    const { q, orderBy } = req.query as GetArticlesQuery
-    const articles = await guardianApis.getArticles(orderBy, q)
+    const { q, orderBy, page = '1' } = req.query as GetArticlesQuery
+    const articles = await guardianApis.getArticles(orderBy, q, page)
     res.status(articles.statusCode)
     res.send(articles)
   })
