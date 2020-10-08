@@ -14,9 +14,9 @@ interface Props extends InputGroupProps {
   toggleNewestFirst: () => void
 }
 
-const Comp: React.FC<Props> = props => {
+const Comp: React.FC<Props> = ({ newestFirst, toggleNewestFirst, ...rest }) => {
   return (
-    <InputGroup {...props}>
+    <InputGroup {...rest}>
       <InputLeftElement
         pointerEvents="none"
         color="gray.300"
@@ -29,9 +29,9 @@ const Comp: React.FC<Props> = props => {
           h="1.75rem"
           size="sm"
           colorScheme="teal"
-          onClick={props.toggleNewestFirst}
+          onClick={toggleNewestFirst}
         >
-          {`${props.newestFirst ? 'Newest' : 'Oldest'} Frist`}
+          {`${newestFirst ? 'Newest' : 'Oldest'} Frist`}
         </Button>
       </InputRightElement>
     </InputGroup>
