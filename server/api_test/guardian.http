@@ -1,11 +1,8 @@
 @host = http://localhost:4000
 
-GET {{host}}/articles
+GET {{host}}/api/articles?orderBy=newest&q=12%20years%20a%20slave&format=json&tag=film/film,tone/reviews&from-date=2010-01-01
 
 ###
 
-GET {{host}}/articles/sport/live/2020/oct/05/french-open-2020-kvitova-dimitrov-djokovic-live3
+GET {{host}}/api/articles/sport/live/2020/oct/05/french-open-2020-kvitova-dimitrov-djokovic-live
 
-###
-
-GET {{host}}/articles/sport
