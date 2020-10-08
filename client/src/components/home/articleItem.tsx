@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Badge } from '@chakra-ui/core'
 import NextLink from 'next/link'
 import { Article } from '../../repositories/createGuardianApis'
+import dateHumanize from '../../utils/dateHumanize'
 
 interface Props {
   article: Article
@@ -29,7 +30,7 @@ const Comp: React.FC<Props> = ({ article }) => (
       <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
         <NextLink href={`/articles/${article.id}`}>{article.webTitle}</NextLink>
       </Box>
-      <Box>{article.webPublicationDate}</Box>
+      <Box>{dateHumanize(article.webPublicationDate)}</Box>
     </Box>
   </Box>
 )
