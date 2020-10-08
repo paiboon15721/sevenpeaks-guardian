@@ -2,23 +2,24 @@ import React, { useState, useEffect, useRef, useContext } from 'react'
 import ArticlesList from './articlesList'
 import SearchBox from './searchBox'
 import appContext from '../../appContext'
-import { useArticles, OrderBy } from '../../stores/articles'
+import { useArticles } from '../../stores/articles'
 import Error from '../error'
+import { Skeleton } from '@chakra-ui/core'
 
 interface Props {}
 
 const Comp: React.FC<Props> = () => {
   const {
-    state: { articlesResponse, orderBy },
+    state: { articlesResponse, orderBy, q },
     dispatch,
   } = useArticles()
   const isFirstRun = useRef(true)
   const { guardianApis } = useContext(appContext)
   const [loading, setLoading] = useState(false)
 
-  const fetchArticles = async (orderBy: OrderBy) => {
+  const fetchArticles = async () => {
     setLoading(true)
-    const articlesResponse = await guardianApis.getArticles(orderBy)
+    const articlesResponse = await guardianApis.getArticles(orderBy, q)
     dispatch({ type: 'SET_ARTICLES_RESPONSE', payload: articlesResponse })
     setLoading(false)
   }
@@ -28,7 +29,7 @@ const Comp: React.FC<Props> = () => {
       isFirstRun.current = false
       return
     }
-    fetchArticles(orderBy)
+    fetchArticles()
   }, [orderBy])
 
   return (
@@ -37,9 +38,11 @@ const Comp: React.FC<Props> = () => {
       {articlesResponse.error && (
         <Error message={articlesResponse.error.message} />
       )}
-      {articlesResponse.response && (
-        <ArticlesList articles={articlesResponse.response.results} />
-      )}
+      <Skeleton isLoaded={!loading}>
+        {articlesResponse.response && (
+          <ArticlesList articles={articlesResponse.response.results} />
+        )}
+      </Skeleton>
     </>
   )
 }
