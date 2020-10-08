@@ -1,6 +1,6 @@
 @host = http://localhost:4000
 
-GET {{host}}/api/articles?orderBy=newest&q=12%20years%20a%20slave&format=json&tag=film/film,tone/reviews&from-date=2010-01-01
+GET {{host}}/api/articles?orderBy=newest
 
 ###
 
