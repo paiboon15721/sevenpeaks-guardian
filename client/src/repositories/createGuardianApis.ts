@@ -25,7 +25,7 @@ export interface Article {
   pillarName: string
 }
 
-export interface Articles {
+export interface ArticlesRoot {
   status: string
   userTier: string
   total: number
@@ -37,7 +37,7 @@ export interface Articles {
   results: Article[]
 }
 
-export interface Article {
+export interface ArticleRoot {
   status: string
   userTier: string
   total: number
@@ -45,13 +45,13 @@ export interface Article {
 }
 
 export interface GuardianApis {
-  getArticles: (q?: string) => Promise<GuardianResponse<Articles>>
-  getArticleById: (id: string) => Promise<GuardianResponse<Article>>
+  getArticles: (q?: string) => Promise<GuardianResponse<ArticlesRoot>>
+  getArticleById: (id: string) => Promise<GuardianResponse<ArticleRoot>>
 }
 
-export default (guardianClient: AxiosInstance): GuardianApis => ({
-  async getArticles(q): Promise<GuardianResponse<Articles>> {
-    const { data } = await guardianClient.get<GuardianResponse<Articles>>(
+const createGuardianClient = (guardianClient: AxiosInstance): GuardianApis => ({
+  async getArticles(q): Promise<GuardianResponse<ArticlesRoot>> {
+    const { data } = await guardianClient.get<GuardianResponse<ArticlesRoot>>(
       '/articles',
       {
         params: { q },
@@ -60,10 +60,12 @@ export default (guardianClient: AxiosInstance): GuardianApis => ({
     return data
   },
 
-  async getArticleById(id): Promise<GuardianResponse<Article>> {
-    const { data } = await guardianClient.get<GuardianResponse<Article>>(
+  async getArticleById(id): Promise<GuardianResponse<ArticleRoot>> {
+    const { data } = await guardianClient.get<GuardianResponse<ArticleRoot>>(
       `/articles/${id}`,
     )
     return data
   },
 })
+
+export default createGuardianClient
