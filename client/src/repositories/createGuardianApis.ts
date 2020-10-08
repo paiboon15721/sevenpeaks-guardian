@@ -1,4 +1,5 @@
 import { AxiosInstance } from 'axios'
+import { OrderBy } from '../stores/articles'
 
 export interface GuardianResponse<T> {
   statusCode: number
@@ -52,7 +53,7 @@ export interface ArticleRoot {
 
 export interface GuardianApis {
   getArticles: (
-    orderBy?: 'oldest' | 'newest',
+    orderBy?: OrderBy,
     q?: string,
   ) => Promise<GuardianResponse<ArticlesRoot>>
   getArticleById: (id: string) => Promise<GuardianResponse<ArticleRoot>>

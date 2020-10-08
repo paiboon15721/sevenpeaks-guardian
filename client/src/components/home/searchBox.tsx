@@ -8,15 +8,25 @@ import {
 } from '@chakra-ui/core'
 import { SearchIcon } from '@chakra-ui/icons'
 import React from 'react'
+import { useArticles } from '../../stores/articles'
 
 interface Props extends InputGroupProps {
-  newestFirst: boolean
-  toggleNewestFirst: () => void
+  loading: boolean
 }
 
-const Comp: React.FC<Props> = ({ newestFirst, toggleNewestFirst, ...rest }) => {
+const Comp: React.FC<Props> = props => {
+  const {
+    dispatch,
+    state: { orderBy },
+  } = useArticles()
+
+  const toggleNewestFirst = () =>
+    dispatch({
+      type: 'TOGGLE_ORDER_BY',
+    })
+
   return (
-    <InputGroup {...rest}>
+    <InputGroup {...props}>
       <InputLeftElement
         pointerEvents="none"
         color="gray.300"
@@ -30,8 +40,9 @@ const Comp: React.FC<Props> = ({ newestFirst, toggleNewestFirst, ...rest }) => {
           size="sm"
           colorScheme="teal"
           onClick={toggleNewestFirst}
+          isLoading={props.loading}
         >
-          {`${newestFirst ? 'Newest' : 'Oldest'} Frist`}
+          {`${orderBy === 'oldest' ? 'Newest' : 'Oldest'} Frist`}
         </Button>
       </InputRightElement>
     </InputGroup>
