@@ -19,7 +19,7 @@ const HeaderContent = () => {
     <Flex w="100%" h="100%" px="6" align="center" justify="space-between">
       <NextLink href="/" passHref>
         <chakra.a display="block" aria-label="Back to homepage">
-          <Heading size="lg">Guardian</Heading>
+          <Heading size="lg">The Guardian</Heading>
         </chakra.a>
       </NextLink>
       <Flex maxW="720px" align="center" color="gray.400">

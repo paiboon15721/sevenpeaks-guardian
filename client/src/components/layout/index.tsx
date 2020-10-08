@@ -9,7 +9,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   return (
     <Box>
       <Header />
-      <Box pt={3} px={5} mt="5.5rem" mx="auto" maxW="4xl" minH="80vh">
+      <Box pt={3} px={5} mt="6.5rem" mx="auto" maxW="4xl" minH="80vh">
         {children}
       </Box>
       <Footer />
