@@ -1,17 +1,7 @@
 import React from 'react'
-import {
-  Box,
-  Badge,
-  chakra,
-  Button,
-  Center,
-  Image,
-  Flex,
-  Text,
-} from '@chakra-ui/core'
+import { Box, Badge, chakra, Center, Image, Flex, Text } from '@chakra-ui/core'
 import { MdStar } from 'react-icons/md'
-import { ExternalLinkIcon, ArrowBackIcon } from '@chakra-ui/icons'
-import NextLink from 'next/link'
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 import dateHumanize from '../../utils/dateHumanize'
 import { Article } from '../../repositories/createGuardianApis'
 
@@ -20,12 +10,7 @@ interface Props {
 }
 
 const Comp: React.FC<Props> = ({ article }) => (
-  <Box maxW="4xl" overflow="hidden">
-    <NextLink href="/">
-      <Button leftIcon={<ArrowBackIcon />} variant="link" my="3" size="lg">
-        Back
-      </Button>
-    </NextLink>
+  <>
     <Center my="6">
       <Image borderRadius="md" src={article.fields.thumbnail} />
     </Center>
@@ -65,7 +50,7 @@ const Comp: React.FC<Props> = ({ article }) => (
         <Box mt="5" dangerouslySetInnerHTML={{ __html: article.fields.body }} />
       )}
     </Box>
-  </Box>
+  </>
 )
 
 export default Comp
