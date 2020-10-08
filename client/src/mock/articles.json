@@ -20,7 +20,8 @@
         "apiUrl": "https://content.guardianapis.com/australia-news/live/2020/oct/08/australia-coronavirus-budget-live-news-coalition-labor-frydenberg-morrison-nsw-qld-victoria-politics-updates",
         "fields": {
           "headline": "Coronavirus Australia live news: university reforms pass Senate as Victoria records 11 cases and new Sydney locations linked to Covid",
-          "thumbnail": "https://media.guim.co.uk/11b41e8498a026832dfeb898e294bbf909724e06/0_354_5472_3283/500.jpg"
+          "thumbnail": "https://media.guim.co.uk/11b41e8498a026832dfeb898e294bbf909724e06/0_354_5472_3283/500.jpg",
+          "starRating": "4"
         },
         "isHosted": false,
         "pillarId": "pillar/news",
