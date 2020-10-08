@@ -31,9 +31,7 @@ const Comp: React.FC<Props> = ({ article }) => (
     </Flex>
 
     <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
-      <NextLink href={`/articles/${article.id}`}>
-        {article.fields.headline}
-      </NextLink>
+      <NextLink href={`/${article.id}`}>{article.fields.headline}</NextLink>
     </Box>
     <Flex mt={2} align="center">
       <Box as={MdStar} color="orange.400" />
