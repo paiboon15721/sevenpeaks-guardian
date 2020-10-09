@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  reverse-proxy:
+    image: traefik:v2.3
+    command:
+      - --api.insecure=true
+      - --providers.docker
+      - --accesslog=true
+      - --accesslog.filepath=./access.log
+      - --accesslog.bufferingsize=100
+    ports:
+      # The HTTP port
+      - "80:80"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  guardian-client:
+    image: paiboon15721/guardian-client
+    restart: always
+    depends_on:
+      - guardian-server
+    labels:
+      - "traefik.http.routers.guardian-client.rule=Host(`localhost`, `guardian.secretsrc.com`)"
+
+  guardian-server:
+    image: paiboon15721/guardian-server
+    restart: always
+    env_file:
+      - ./server/.env
+    labels:
+      - "traefik.http.routers.guardian-server.rule=Host(`localhost`, `guardian.secretsrc.com`) && PathPrefix(`/api`)"
