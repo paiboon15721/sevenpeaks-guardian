@@ -1,10 +1,10 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useDebounce } from 'use-debounce'
-import appContext from '../appContext'
+import AppContext from '../appContext'
 import { useArticles } from '../stores/articles'
 
 const useArticlesEffect = () => {
-  const { guardianApis } = useContext(appContext)
+  const { guardianApis } = useContext(AppContext)
   const {
     state: { orderBy, q },
     dispatch,
