@@ -7,8 +7,8 @@ const guardianClient = createGuardianClient(
   __prod__ ? '/api' : 'http://localhost:4000/api',
 )
 
-// import setupMockApi from './utils/setupMockApi'
-// setupMockApi(guardianClient)
+import setupMockApi from './utils/setupMockApi'
+setupMockApi(guardianClient)
 
 export const guardianApis = createGuardianApis(guardianClient)
 
