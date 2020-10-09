@@ -4,7 +4,11 @@ import createGuardianApis from './repositories/createGuardianApis'
 import { __prod__ } from './constants'
 
 const guardianClient = createGuardianClient(
-  __prod__ ? '/api' : 'http://localhost:4000/api',
+  __prod__
+    ? process.browser
+      ? '/api'
+      : 'http://guardian-server:4000/api'
+    : 'http://localhost:4000/api',
 )
 
 // Mocking data for developing, faster, and don't need a backend.
