@@ -24,6 +24,7 @@ function MyApp({
           articlesResponse={articlesResponse}
           orderBy="newest"
           q=""
+          articles={articlesResponse.response!.results}
         >
           <Component {...pageProps} />
         </ArticlesProvider>

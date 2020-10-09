@@ -55,6 +55,7 @@ export interface GuardianApis {
   getArticles: (
     orderBy?: OrderBy,
     q?: string,
+    page?: number,
   ) => Promise<GuardianResponse<ArticlesRoot>>
   getArticleById: (id: string) => Promise<GuardianResponse<ArticleRoot>>
 }
@@ -63,11 +64,12 @@ const createGuardianClient = (guardianClient: AxiosInstance): GuardianApis => ({
   async getArticles(
     orderBy = 'newest',
     q = '',
+    page = 1,
   ): Promise<GuardianResponse<ArticlesRoot>> {
     const { data } = await guardianClient.get<GuardianResponse<ArticlesRoot>>(
       '/articles',
       {
-        params: { q, orderBy },
+        params: { q, orderBy, page },
       },
     )
     return data
