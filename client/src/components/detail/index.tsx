@@ -14,7 +14,7 @@ const Comp: React.FC<Props> = ({ article }) => (
     <Center my="6">
       <Image borderRadius="md" src={article.fields.thumbnail} />
     </Center>
-    <Box p="6">
+    <Box>
       <Box d="flex" alignItems="baseline">
         <Badge borderRadius="full" px="2" colorScheme="teal">
           {article.pillarName}
