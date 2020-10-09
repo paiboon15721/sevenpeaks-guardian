@@ -7,8 +7,9 @@ const guardianClient = createGuardianClient(
   __prod__ ? '/api' : 'http://localhost:4000/api',
 )
 
-import setupMockApi from './utils/setupMockApi'
-setupMockApi(guardianClient)
+// Mocking data for developing, faster, and don't need a backend.
+// import setupMockApi from './utils/setupMockApi'
+// setupMockApi(guardianClient)
 
 export const guardianApis = createGuardianApis(guardianClient)
 

@@ -1,6 +1,9 @@
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/core'
 import App, { AppContext, AppProps } from 'next/app'
+import Router from 'next/router'
 import React from 'react'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 import Layout from '../components/layout'
 import {
   ArticlesRoot,
@@ -10,6 +13,10 @@ import { guardianApis } from '../appContext'
 import { ArticlesProvider } from '../stores/articles'
 
 import theme from '../theme'
+
+Router.events.on('routeChangeStart', () => NProgress.start())
+Router.events.on('routeChangeComplete', () => NProgress.done())
+Router.events.on('routeChangeError', () => NProgress.done())
 
 function MyApp({
   Component,
