@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useContext } from 'react'
 import ArticlesList from './articlesList'
 import SearchBox from './searchBox'
 import appContext from '../../appContext'
 import { useArticles } from '../../stores/articles'
 import Error from '../error'
 import { Skeleton, SimpleGrid, Alert, AlertIcon } from '@chakra-ui/core'
-import { useDebounce } from 'use-debounce'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import useArticlesEffect from '../../hooks/useArticlesEffect'
 
 interface Props {}
 
@@ -15,17 +15,8 @@ const Comp: React.FC<Props> = () => {
     state: { articlesResponse, orderBy, q, articles },
     dispatch,
   } = useArticles()
-  const isFirstRun = useRef(true)
+  const loading = useArticlesEffect()
   const { guardianApis } = useContext(appContext)
-  const [loading, setLoading] = useState(false)
-  const [debounceQ] = useDebounce(q, 500)
-
-  const fetchArticles = async () => {
-    setLoading(true)
-    const res = await guardianApis.getArticles(orderBy, q)
-    dispatch({ type: 'SET_ARTICLES_RESPONSE', payload: res })
-    setLoading(false)
-  }
 
   const fetchMoreArticles = async () => {
     const res = await guardianApis.getArticles(
@@ -35,14 +26,6 @@ const Comp: React.FC<Props> = () => {
     )
     dispatch({ type: 'ADD_ARTICLES_RESPONSE', payload: res })
   }
-
-  useEffect(() => {
-    if (isFirstRun.current) {
-      isFirstRun.current = false
-      return
-    }
-    fetchArticles()
-  }, [orderBy, debounceQ])
 
   return (
     <>
