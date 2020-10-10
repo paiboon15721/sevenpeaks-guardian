@@ -3,6 +3,7 @@ import React from 'react'
 import Error from '../components/error'
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
+import Head from 'next/head'
 import {
   ArticleRoot,
   GuardianResponse,
@@ -19,6 +20,11 @@ const Page: NextPage<Props> = props => {
   const { articleResponse } = props
   return (
     <>
+      <Head>
+        <title>
+          The Guardian - {articleResponse.response!.content.fields.headline}
+        </title>
+      </Head>
       <NextLink href="/">
         <Button leftIcon={<ArrowBackIcon />} variant="link" my="3" size="lg">
           Back

@@ -1,5 +1,6 @@
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/core'
 import App, { AppContext, AppProps } from 'next/app'
+import Head from 'next/head'
 import Router from 'next/router'
 import React from 'react'
 import NProgress from 'nprogress'
@@ -24,19 +25,25 @@ function MyApp({
   articlesResponse,
 }: AppProps & { articlesResponse: GuardianResponse<ArticlesRoot> }) {
   return (
-    <ChakraProvider theme={theme} resetCSS>
-      <ColorModeScript />
-      <Layout>
-        <ArticlesProvider
-          articlesResponse={articlesResponse}
-          orderBy="newest"
-          q=""
-          articles={articlesResponse.response!.results}
-        >
-          <Component {...pageProps} />
-        </ArticlesProvider>
-      </Layout>
-    </ChakraProvider>
+    <>
+      <Head>
+        <title>The Guardian</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <ChakraProvider theme={theme} resetCSS>
+        <ColorModeScript />
+        <Layout>
+          <ArticlesProvider
+            articlesResponse={articlesResponse}
+            orderBy="newest"
+            q=""
+            articles={articlesResponse.response!.results}
+          >
+            <Component {...pageProps} />
+          </ArticlesProvider>
+        </Layout>
+      </ChakraProvider>
+    </>
   )
 }
 
