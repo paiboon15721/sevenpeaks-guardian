@@ -3,9 +3,9 @@ import ArticlesList from './articlesList'
 import SearchBox from './searchBox'
 import { useArticles } from '../../stores/articles'
 import Error from '../error'
-import { Skeleton } from '@chakra-ui/core'
 import useArticlesEffect from '../../hooks/useArticlesEffect'
 import ArticlesInfiniteScroll from './articlesInfiniteScroll'
+import Loading from '../loading'
 
 interface Props {}
 
@@ -21,13 +21,15 @@ const Comp: React.FC<Props> = () => {
       {articlesResponse.error && (
         <Error message={articlesResponse.error.message} />
       )}
-      <Skeleton isLoaded={!loading}>
-        {articlesResponse.response && (
+      {loading ? (
+        <Loading number={10} />
+      ) : (
+        articlesResponse.response && (
           <ArticlesInfiniteScroll>
             <ArticlesList articles={articles} />
           </ArticlesInfiniteScroll>
-        )}
-      </Skeleton>
+        )
+      )}
     </>
   )
 }

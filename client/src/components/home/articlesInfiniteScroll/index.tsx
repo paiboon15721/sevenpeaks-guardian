@@ -2,7 +2,7 @@ import { Alert, AlertIcon } from '@chakra-ui/core'
 import React, { useContext } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useArticles } from '../../../stores/articles'
-import Loading from './loading'
+import Loading from '../../loading'
 import AppContext from '../../../appContext'
 
 interface Props {}
@@ -32,7 +32,7 @@ const Comp: React.FC<Props> = ({ children }) => {
         articlesResponse.response!.pages
       }
       next={fetchMoreArticles}
-      loader={<Loading />}
+      loader={<Loading number={4} />}
       endMessage={
         articles.length ? (
           <Alert mt="24px" status="success">
